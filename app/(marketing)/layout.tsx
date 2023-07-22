@@ -1,3 +1,4 @@
+import SiteNavbar from "@/components/layout/navbar";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -14,7 +15,7 @@ export default function MarketingLayout({ children }: MarketingLayoutProps) {
           <p className="font-heading md:text-2xl tracking-tight uppercase font-black text-slate-950">
             Rhinos gym
           </p>
-          navbar
+          <SiteNavbar />
         </div>
       </header>
       <main className="flex-1">{children}</main>

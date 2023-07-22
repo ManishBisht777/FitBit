@@ -258,24 +258,26 @@ export default function Page({}: Props) {
         </div>
       </section>
 
-      <section className="container my-10 p-10 text-center flex justify-center relative">
-        <div className="flex flex-wrap font-heading text-4xl text-primary-foreground max-w-xl">
-          THE LAST THREE OR FOUR REPS IS WHAT MAKES THE MUSCLE GROW. THIS AREA
-          OF PAIN DIVIDES A CHAMPION FROM SOMEONE WHO IS NOT A CHAMPION.
+      <section className="container my-10 p-10 flex relative">
+        <div className="flex justify-between items-center w-full">
+          <div className="flex flex-col font-heading text-6xl gap-2 text-primary-foreground max-w-xl uppercase">
+            <p>GET a life style</p>
+            <p>Easily and fun here</p>
+          </div>
+          <div className="bg-black/10 flex justify-center items-center w-24 aspect-square text-white rounded-full border-2 border-dashed border-orange-400">
+            <Icons.MoveRight className="rotate-[305deg] w-16" />
+          </div>
         </div>
-        <Image
-          className="absolute top-0 right-20 rotate-45"
-          src="/decoration.svg"
-          aria-hidden
-          alt="decoration image"
-          width={150}
-          height={150}
-        />
       </section>
 
-      <section className="container font-heading text-5xl text-primary-foreground/50 my-10 p-10 border-y-2 uppercase">
+      <section className="container font-heading text-5xl text-primary-foreground/50 my-10 p-10 border-y-2 border-primary-foreground/50 uppercase">
         feel great.{" "}
         <span className="text-primary-foreground">body and mind.</span>
+      </section>
+
+      <section className="flex justify-center gap-6 font-heading text-primary-foreground text-4xl">
+        <span className="text-primary-foreground/50">Email</span>
+        <span>Manishbishtdev@gmail.com</span>
       </section>
     </main>
   );

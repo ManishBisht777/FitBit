@@ -9,9 +9,10 @@ type Props = {};
 export default function SiteNavbar({}: Props) {
   return (
     <nav className="flex md:gap-8 items-center">
-      {NavbarConfig.map((item: NavItem) => {
+      {NavbarConfig.map((item: NavItem, index: number) => {
         return (
           <Link
+            key={index}
             className={cn(
               "hover:text-slate-900 text-slate-700",
               item.disabled && "cursor-not-allowed opacity-80"

@@ -89,7 +89,7 @@ export default function Page({}: Props) {
         </div>
       </section>
 
-      <section className="container p-10 text-/90 flex justify-center gap-14">
+      <section className="container my-10 p-10 text-/90 flex justify-center gap-14">
         <Icons.Slack className="w-20 h-20 text-white/70" />
         <Icons.Gitlab className="w-20 h-20 text-white/70" />
         <Icons.Dribbble className="w-20 h-20 text-white/70" />
@@ -196,7 +196,7 @@ export default function Page({}: Props) {
         </div>
       </section>
 
-      <section className="container p-10 text-center flex justify-center relative">
+      <section className="container my-10 p-10 text-center flex justify-center relative">
         <div className="flex flex-wrap font-heading text-4xl text-primary-foreground max-w-xl">
           THE LAST THREE OR FOUR REPS IS WHAT MAKES THE MUSCLE GROW. THIS AREA
           OF PAIN DIVIDES A CHAMPION FROM SOMEONE WHO IS NOT A CHAMPION.

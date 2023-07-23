@@ -6,10 +6,6 @@ export const NavbarConfig: NavItem[] = [
     href: "/",
   },
   {
-    title: "Goals",
-    href: "/",
-  },
-  {
     title: "Services",
     href: "/",
   },

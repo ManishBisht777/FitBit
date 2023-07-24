@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { NavItem } from "@/types";
 import Link from "next/link";
 import React from "react";
+import { buttonVariants } from "../ui/button";
 
 type Props = {};
 
@@ -23,6 +24,9 @@ export default function SiteNavbar({}: Props) {
           </Link>
         );
       })}
+      <Link href="/login" className={cn(buttonVariants(), "rounded-full")}>
+        Login
+      </Link>
     </nav>
   );
 }

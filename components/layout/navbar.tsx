@@ -4,10 +4,14 @@ import { NavItem } from "@/types";
 import Link from "next/link";
 import React from "react";
 import { buttonVariants } from "../ui/button";
+import { getCurrentUser } from "@/lib/session";
+import { UserAccountNav } from "../user-account-menu";
 
 type Props = {};
 
-export default function SiteNavbar({}: Props) {
+export default async function SiteNavbar({}: Props) {
+  const user = await getCurrentUser();
+
   return (
     <nav className="flex md:gap-8 items-center">
       {NavbarConfig.map((item: NavItem, index: number) => {
@@ -24,9 +28,13 @@ export default function SiteNavbar({}: Props) {
           </Link>
         );
       })}
-      <Link href="/login" className={cn(buttonVariants(), "rounded-full")}>
-        Login
-      </Link>
+      {!user ? (
+        <Link href="/login" className={cn(buttonVariants(), "rounded-full")}>
+          Login
+        </Link>
+      ) : (
+        <UserAccountNav user={user} />
+      )}
     </nav>
   );
 }

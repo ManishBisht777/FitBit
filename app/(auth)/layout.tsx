@@ -5,8 +5,8 @@ interface AuthLayoutProps {
 }
 
 export default async function AuthLayout({ children }: AuthLayoutProps) {
-  // const user = getCurrentUser();
-  // console.log(user);
+  const user = await getCurrentUser();
+  console.log(user);
 
   return (
     <div className="min-h-screen container relative hidden flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">

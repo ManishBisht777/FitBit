@@ -15,6 +15,7 @@ import {
   LucideProps,
   LayoutPanelLeft,
   LucideIcon,
+  Image,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -28,6 +29,7 @@ export const Icons = {
   Codesandbox,
   Trello,
   Hexagon,
+  Image,
   Tv2,
   Users,
   CalendarDays,

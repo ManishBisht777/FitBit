@@ -16,7 +16,7 @@ export default async function DashboardLayout({
         <Icons.Hexagon className="w-10 h-10 mt-10" />
         <DashboardNav items={SidebarConfig} />
       </aside>
-      <main className="flex w-full flex-1 flex-col overflow-hidden">
+      <main className="flex w-full flex-1 flex-col overflow-hidden text-primary-foreground pt-10">
         {children}
       </main>
     </div>

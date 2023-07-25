@@ -1,10 +1,8 @@
-import { DashboardSearch } from "@/components/search";
-
 type Props = {};
 
 export default function Dashboard({}: Props) {
   return (
-    <div className="text-primary-foreground mt-10 flex">
+    <div className="text-primary-foreground flex">
       <div className="flex-1 flex-col px-5">
         <div className="flex flex-col justify-between">
           <h1 className="text-2xl font-medium">Hi, Manish Bisht</h1>

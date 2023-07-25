@@ -2,14 +2,9 @@ import { SidebarNavItem } from "@/types";
 
 export const SidebarConfig: SidebarNavItem[] = [
   {
-    title: "Dashboard",
-    icon: "LayoutPanelLeft",
-    href: "/dashboard",
-  },
-  {
     title: "Billing",
     icon: "LayoutPanelLeft",
-    href: "/dashboard/billing",
+    href: "/dashboard/plans",
   },
   {
     title: "Edit Profile",

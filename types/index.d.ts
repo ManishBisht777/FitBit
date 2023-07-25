@@ -3,3 +3,9 @@ export type NavItem = {
   href: string;
   disabled?: boolean;
 };
+
+export type SidebarNavItem = {
+  title: string;
+  icon?: keyof typeof Icons;
+  href: string;
+};

@@ -13,7 +13,11 @@ import {
   MoveRight,
   Loader2,
   LucideProps,
+  LayoutPanelLeft,
+  LucideIcon,
 } from "lucide-react";
+
+export type Icon = LucideIcon;
 
 export const Icons = {
   Slack,
@@ -28,6 +32,7 @@ export const Icons = {
   Users,
   CalendarDays,
   MoveRight,
+  LayoutPanelLeft,
   spinner: Loader2,
   gitHub: ({ ...props }: LucideProps) => (
     <svg

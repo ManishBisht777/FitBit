@@ -1,3 +1,4 @@
+import DashboardNavbar from "@/components/layout/dashboard-navbar";
 import { prisma } from "@/lib/db";
 import { getCurrentUser } from "@/lib/session";
 import { redirect } from "next/navigation";
@@ -27,10 +28,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <>
-      {/* <Navbar /> */}
-      Navbar
+    <div className="container">
+      <DashboardNavbar />
       {children}
-    </>
+    </div>
   );
 }

@@ -18,6 +18,7 @@ import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useStoreModal } from "@/hooks/use-gym-modal";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   name: z.string().min(1),
@@ -29,6 +30,7 @@ export default function StoreModal({}: Props) {
   const storeModal = useStoreModal();
   const [loading, setLoading] = useState(false);
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -50,6 +52,7 @@ export default function StoreModal({}: Props) {
       setLoading(false);
       form.reset();
       storeModal.onClose();
+      router.refresh();
     } catch (error) {
       console.log(error);
     }

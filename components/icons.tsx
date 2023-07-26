@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   Dumbbell,
   CircleDollarSign,
+  Coins,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -31,6 +32,7 @@ export const Icons = {
   Dribbble,
   Codesandbox,
   Trello,
+  Coins,
   Hexagon,
   Image,
   Tv2,

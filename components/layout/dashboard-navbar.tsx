@@ -3,6 +3,7 @@ import { GymSwitcher } from "../gym-switcher";
 import { UserAccountNav } from "../user-account-menu";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
+import DashboardMainNav from "./dashboard-main-nav";
 
 type DashboardNavbarProps = {};
 
@@ -19,9 +20,9 @@ export default async function DashboardNavbar({}: DashboardNavbarProps) {
 
   return (
     <div className="border-b">
-      <div className="flex h-16 justify-between items-center px-4">
+      <div className="flex h-16 items-center px-4">
         <GymSwitcher items={gyms} />
-        {/* <MainNav className="mx-6" /> */}
+        <DashboardMainNav />
         <UserAccountNav user={user} />
       </div>
     </div>

@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 
 import { cn } from "@/lib/utils";
 
-import "./globals.css";
+import "../globals.css";
 import ModalProvider from "@/providers/modal-provider";
 import { Toaster } from "@/components/ui/toaster";
 
@@ -14,7 +14,7 @@ const fontSans = Inter({
 });
 
 const fontHeading = localFont({
-  src: "../assets/fonts/antonio.ttf",
+  src: "../../assets/fonts/antonio.ttf",
   variable: "--font-heading",
 });
 

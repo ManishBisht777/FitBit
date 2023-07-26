@@ -13,7 +13,7 @@ export const SidebarConfig: SidebarNavItem[] = [
   },
   {
     title: "Purchases",
-    icon: "coins",
+    icon: "Coins",
     href: "/dashboard/stores",
   },
   {

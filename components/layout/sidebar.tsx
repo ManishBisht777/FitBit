@@ -1,25 +1,20 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { SidebarNavItem } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-import { cn } from "@/lib/utils";
 import { Icons } from "../icons";
-import { SidebarNavItem } from "@/types";
 
 interface DashboardNavProps {
   items: SidebarNavItem[];
 }
 
-export function DashboardNav({ items }: DashboardNavProps) {
+export default function sidebar({ items }: DashboardNavProps) {
   const path = usePathname();
 
-  if (!items?.length) {
-    return null;
-  }
-
   return (
-    <div className="grid items-start gap-2 text-primary-foreground/90">
+    <div className="grid items-start gap-2 text-primary/90 mr-4 mt-4">
       {items.map((item, index) => {
         //@ts-ignore
         const Icon = Icons[item.icon || "arrowRight"];

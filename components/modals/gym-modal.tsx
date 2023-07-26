@@ -2,6 +2,7 @@ import { z } from "zod";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import {
@@ -18,11 +19,7 @@ import { Button } from "../ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useStoreModal } from "@/hooks/use-gym-modal";
-import { useRouter } from "next/navigation";
-
-const formSchema = z.object({
-  name: z.string().min(1),
-});
+import { formSchema } from "@/lib/validation/gym";
 
 type Props = {};
 

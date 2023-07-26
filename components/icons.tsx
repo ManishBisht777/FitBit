@@ -16,6 +16,9 @@ import {
   LayoutPanelLeft,
   LucideIcon,
   Image,
+  ShoppingBag,
+  Dumbbell,
+  CircleDollarSign,
 } from "lucide-react";
 
 export type Icon = LucideIcon;
@@ -34,6 +37,9 @@ export const Icons = {
   Users,
   CalendarDays,
   MoveRight,
+  Dumbbell,
+  CircleDollarSign,
+  ShoppingBag,
   LayoutPanelLeft,
   spinner: Loader2,
   gitHub: ({ ...props }: LucideProps) => (

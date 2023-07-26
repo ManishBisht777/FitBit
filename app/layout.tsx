@@ -5,6 +5,8 @@ import localFont from "next/font/local";
 import { cn } from "@/lib/utils";
 
 import "./globals.css";
+import ModalProvider from "@/providers/modal-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 const fontSans = Inter({
   subsets: ["latin"],
@@ -35,6 +37,8 @@ export default function RootLayout({
           fontHeading.variable
         )}
       >
+        <Toaster />
+        <ModalProvider />
         {children}
       </body>
     </html>

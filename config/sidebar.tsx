@@ -2,28 +2,23 @@ import { SidebarNavItem } from "@/types";
 
 export const SidebarConfig: SidebarNavItem[] = [
   {
-    title: "Billing",
-    icon: "LayoutPanelLeft",
-    href: "/dashboard/plans",
+    title: "Overview",
+    icon: "Dumbbell",
+    href: "/",
   },
   {
-    title: "Edit Profile",
-    icon: "LayoutPanelLeft",
-    href: "/dashboard/edit",
+    title: "Revenue",
+    icon: "CircleDollarSign",
+    href: "/dashboard/stores",
   },
   {
-    title: "Dashboard",
-    icon: "LayoutPanelLeft",
-    href: "/dashboard1",
+    title: "Purchases",
+    icon: "coins",
+    href: "/dashboard/stores",
   },
   {
-    title: "Billing",
+    title: "Plans",
     icon: "LayoutPanelLeft",
-    href: "/dashboard/billing1",
-  },
-  {
-    title: "Edit Profile",
-    icon: "LayoutPanelLeft",
-    href: "/dashboard/edi2",
+    href: "/dashboard/stores",
   },
 ];

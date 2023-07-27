@@ -17,13 +17,26 @@ import { Input } from "../ui/input";
 import { Billboard } from "@prisma/client";
 import { useState } from "react";
 import ImageUpload from "../image-upload";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
+import { useToast } from "../ui/use-toast";
+
+const formSchema = z.object({
+  label: z.string().min(1),
+  imageUrl: z.string().min(1),
+});
+
+type BillboardFormValues = z.infer<typeof formSchema>;
 
 interface BillboardFormProps {
   initialData: Billboard | null;
 }
 
 export default function BillboardForm({ initialData }: BillboardFormProps) {
-  const form = useForm({
+  const form = useForm<BillboardFormValues>({
+    resolver: zodResolver(formSchema),
     defaultValues: initialData || {
       label: "",
       imageUrl: "",
@@ -33,6 +46,10 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const router = useRouter();
+  const params = useParams();
+  const { toast } = useToast();
+
   const title = initialData ? "Edit billboard" : "Create billboard";
   const description = initialData
     ? "Edit your Gym billboard."
@@ -41,6 +58,32 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
     ? "Billboard updated."
     : "Billboard created.";
   const action = initialData ? "Save changes" : "Create";
+
+  const onSubmit = async (data: BillboardFormValues) => {
+    try {
+      setLoading(true);
+      if (initialData) {
+        await axios.patch(
+          `/api/${params.gymId}/billboards/${params.billboardId}`,
+          data
+        );
+      } else {
+        await axios.post(`/api/${params.gymId}/billboards`, data);
+      }
+      router.refresh();
+      router.push(`/dashboard/${params.gymId}/billboards`);
+      toast({
+        title: toastMessage,
+      });
+    } catch (error: any) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -58,7 +101,10 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
       </div>
       <Separator />
       <Form {...form}>
-        <form className="space-y-8 w-full">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="space-y-8 w-full"
+        >
           <FormField
             control={form.control}
             name="imageUrl"

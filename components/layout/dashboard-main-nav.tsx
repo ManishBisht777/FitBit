@@ -14,22 +14,27 @@ export default function DashboardMainNav({}: Props) {
     {
       href: `/dashboard/${params.gymId}`,
       label: "Overview",
-      active: pathname === `/${params.gymId}`,
+      active: pathname === `/dashboard/${params.gymId}`,
+    },
+    {
+      href: `/dashboard/${params.gymId}/billboards`,
+      label: "Billboards",
+      active: pathname === `/dashboard/${params.gymId}/billboards`,
     },
     {
       href: `/dashboard/${params.gymId}/trainers`,
       label: "Trainers",
-      active: pathname === `/${params.gymId}/trainers`,
+      active: pathname === `/dashboard/${params.gymId}/trainers`,
     },
     {
       href: `/dashboard/${params.gymId}/plans`,
       label: "Plans",
-      active: pathname === `/${params.gymId}/plans`,
+      active: pathname === `/dashboard/${params.gymId}/plans`,
     },
     {
       href: `/dashboard/${params.gymId}/settings`,
       label: "Settings",
-      active: pathname === `/${params.gymId}/settings`,
+      active: pathname === `/dashboard/${params.gymId}/settings`,
     },
   ];
 
@@ -41,9 +46,7 @@ export default function DashboardMainNav({}: Props) {
           href={route.href}
           className={cn(
             "text-sm font-medium transition-colors hover:text-primary",
-            route.active
-              ? "text-black dark:text-white"
-              : "text-muted-foreground"
+            route.active ? "text-primary" : "text-muted-foreground"
           )}
         >
           {route.label}

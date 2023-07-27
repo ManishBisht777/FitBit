@@ -63,9 +63,22 @@ model VerificationToken {
 }
 
 model Gym {
+    id         String      @id @default(uuid())
+    name       String
+    userId     String
+    billboards Billboard[] @relation("GymToBillboard")
+    createdAt  DateTime    @default(now())
+    updatedAt  DateTime    @updatedAt
+}
+
+model Billboard {
     id        String   @id @default(uuid())
-    name      String
-    userId    String
+    gymId     String
+    gym       Gym      @relation("GymToBillboard", fields: [gymId], references: [id])
+    label     String
+    imageUrl  String
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
+
+    @@index([gymId])
 }

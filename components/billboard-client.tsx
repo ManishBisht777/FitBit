@@ -7,10 +7,18 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { Billboard } from "@prisma/client";
+import {
+  BillboardColumn,
+  columns,
+} from "@/app/(root)/dashboard/[gymId]/billboards/columns";
+import { DataTable } from "./ui/data-table";
 
-type Props = {};
+interface Props {
+  items: BillboardColumn[];
+}
 
-export default function BillboardClient({}: Props) {
+export default function BillboardClient({ items }: Props) {
   const params = useParams();
   const router = useRouter();
 
@@ -18,7 +26,7 @@ export default function BillboardClient({}: Props) {
     <>
       <div className="flex justify-between">
         <Heading
-          title="Billboards (0)"
+          title={`Billboards (${items.length})`}
           description="Manage all you gym here's"
         />
         <Button
@@ -30,6 +38,7 @@ export default function BillboardClient({}: Props) {
         </Button>
       </div>
       <Separator />
+      <DataTable columns={columns} data={items} searchKey="label" />
     </>
   );
 }

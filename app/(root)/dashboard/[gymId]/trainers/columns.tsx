@@ -1,6 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
+import CellAction from "./cell-action";
 // import CellAction from "./cell-actions";
 
 export type TrainerColumn = {
@@ -23,8 +24,8 @@ export const columns: ColumnDef<TrainerColumn>[] = [
     accessorKey: "createdAt",
     header: "Joined At",
   },
-  //   {
-  //     id: "actions",
-  //     cell: ({ row }) => <CellAction data={row.original} />,
-  //   },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
+  },
 ];

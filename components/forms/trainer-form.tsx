@@ -65,7 +65,7 @@ export default function TrainerForm({ initialData }: TrainerFormProps) {
       setLoading(true);
       if (initialData) {
         await axios.patch(
-          `/api/${params.gymId}/trainers/${params.billboardId}`,
+          `/api/${params.gymId}/trainers/${params.trainerId}`,
           data
         );
       } else {

@@ -67,6 +67,7 @@ model Gym {
     name       String
     userId     String
     billboards Billboard[] @relation("GymToBillboard")
+    trainers   Trainer[]   @relation("GymToTrainer")
     createdAt  DateTime    @default(now())
     updatedAt  DateTime    @updatedAt
 }
@@ -77,6 +78,20 @@ model Billboard {
     gym       Gym      @relation("GymToBillboard", fields: [gymId], references: [id])
     label     String
     imageUrl  String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([gymId])
+}
+
+model Trainer {
+    id       String @id @default(uuid())
+    name     String
+    role     String
+    imageUrl String
+
+    gymId     String
+    gym       Gym      @relation("GymToTrainer", fields: [gymId], references: [id])
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 

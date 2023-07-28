@@ -39,7 +39,7 @@ export default function ImageUpload({
         {value.map((url) => (
           <div
             key={url}
-            className="relative w-[200px] h-[200px] rounded-md overflow-hidden"
+            className="relative w-[300px] h-[300px] rounded-md overflow-hidden"
           >
             <div className="z-10 absolute top-2 right-2">
               <Button
@@ -55,25 +55,28 @@ export default function ImageUpload({
           </div>
         ))}
       </div>
-      <CldUploadWidget onUpload={onUpload} uploadPreset="qd3vgwvp">
-        {({ open }) => {
-          const onClick = () => {
-            open();
-          };
+      {!(value.length > 0) && (
+        <CldUploadWidget onUpload={onUpload} uploadPreset="qd3vgwvp">
+          {({ open }) => {
+            const onClick = () => {
+              open();
+            };
 
-          return (
-            <Button
-              type="button"
-              disabled={disabled}
-              variant="secondary"
-              onClick={onClick}
-            >
-              <ImagePlus className="h-4 w-4 mr-2" />
-              Upload an Image
-            </Button>
-          );
-        }}
-      </CldUploadWidget>
+            return (
+              <Button
+                type="button"
+                className="w-[300px] h-[300px] flex flex-col justify-center items-center gap-2"
+                disabled={disabled}
+                variant="secondary"
+                onClick={onClick}
+              >
+                <ImagePlus className="h-8 w-8 mr-2" />
+                Upload an Image
+              </Button>
+            );
+          }}
+        </CldUploadWidget>
+      )}
     </div>
   );
 }

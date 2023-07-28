@@ -9,7 +9,7 @@ type Props = {};
 export default function Page({}: Props) {
   return (
     <main>
-      <section className="relative container p-10 bg-background rounded-[3rem] mt-4">
+      <section className="relative container p-10 bg-primary rounded-[3rem] mt-4">
         <h1 className=" font-heading text-2xl tracking-tight font-semibold uppercase text-primary border-b-2 pb-2 border-black/70 offset">
           Make you body fit this spring with us
         </h1>

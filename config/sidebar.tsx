@@ -17,7 +17,7 @@ export const SidebarConfig: SidebarNavItem[] = [
     href: "/dashboard/stores",
   },
   {
-    title: "Plans",
+    title: "Members",
     icon: "LayoutPanelLeft",
     href: "/dashboard/stores",
   },

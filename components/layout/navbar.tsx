@@ -19,7 +19,7 @@ export default async function SiteNavbar({}: Props) {
           <Link
             key={index}
             className={cn(
-              "hover:text-slate-900 text-slate-700",
+              "hover:text-primary text-primary/60",
               item.disabled && "cursor-not-allowed opacity-80"
             )}
             href={item.href}

@@ -22,6 +22,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useToast } from "../ui/use-toast";
+import { AlertModal } from "../modals/alert-modal";
 
 const formSchema = z.object({
   label: z.string().min(1),
@@ -85,16 +86,36 @@ export default function BillboardForm({ initialData }: BillboardFormProps) {
     }
   };
 
+  const onDelete = async () => {
+    try {
+      await axios.delete(
+        `/api/${params.gymId}/billboards/${params.billboardId}`
+      );
+      router.refresh();
+      router.push(`/dashboard/${params.gymId}/billboards`);
+      toast({
+        title: "Billboard Deleted",
+      });
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+      });
+    }
+  };
+
   return (
     <>
+      <AlertModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        onConfirm={onDelete}
+        loading={loading}
+      />
       <div className="flex items-center justify-between">
         <Heading title={title} description={description} />
         {initialData && (
-          <Button
-            variant="destructive"
-            size="sm"
-            // onClick={() => setOpen(true)}
-          >
+          <Button variant="destructive" size="sm" onClick={() => setOpen(true)}>
             <Trash className="h-4 w-4" />
           </Button>
         )}

@@ -12,6 +12,7 @@ import { AlertModal } from "@/components/modals/alert-modal";
 import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
+import { toast } from "@/components/ui/use-toast";
 
 interface CellActionProps {
   data: BillboardColumn;
@@ -27,7 +28,9 @@ export default function CellAction({ data }: CellActionProps) {
     try {
       setLoading(true);
       await axios.delete(`/api/${params.gymId}/billboards/${data.id}`);
-
+      toast({
+        title: "Billboard deleted",
+      });
       router.refresh();
     } catch (error) {
     } finally {

@@ -70,6 +70,8 @@ model Gym {
     type       String
     billboards Billboard[] @relation("GymToBillboard")
     trainers   Trainer[]   @relation("GymToTrainer")
+    plans      Plan[]      @relation("GymToPlan")
+    benefits   Benefit[]   @relation("GymToBenefit")
     createdAt  DateTime    @default(now())
     updatedAt  DateTime    @updatedAt
 }
@@ -98,4 +100,43 @@ model Trainer {
     updatedAt DateTime @updatedAt
 
     @@index([gymId])
+}
+
+model Plan {
+    id          String  @id @default(uuid())
+    name        String
+    description String
+    images      Image[] @relation("PlanToImage")
+    price       Decimal
+
+    gymId     String
+    gym       Gym      @relation("GymToPlan", fields: [gymId], references: [id])
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([gymId])
+}
+
+model Benefit {
+    id   String @id @default(uuid())
+    name String
+
+    gymId     String
+    gym       Gym      @relation("GymToBenefit", fields: [gymId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([gymId])
+}
+
+model Image {
+    id  String @id @default(uuid())
+    url String
+
+    planId    String
+    plan      Plan     @relation("PlanToImage", fields: [planId], references: [id], onDelete: Cascade)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([planId])
 }

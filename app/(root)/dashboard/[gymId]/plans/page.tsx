@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/db";
-import { TrainerColumn } from "./columns";
 import { format } from "date-fns";
-import TrainerClient from "./trainer-client";
+import PlanClient from "./plan-client";
+import { PlanColumn } from "./columns";
 
 type Props = {
   params: {
@@ -10,7 +10,7 @@ type Props = {
 };
 
 export default async function Trainers({ params }: Props) {
-  const trainers = await prisma.trainer.findMany({
+  const plans = await prisma.plan.findMany({
     where: {
       gymId: params.gymId,
     },
@@ -19,17 +19,16 @@ export default async function Trainers({ params }: Props) {
     },
   });
 
-  const formattedTrainers: TrainerColumn[] = trainers.map((item) => ({
+  const formattedPlans: PlanColumn[] = plans.map((item) => ({
     id: item.id,
     name: item.name,
-    role: item.role,
     createdAt: format(item.createdAt, "MMMM do, yyyy"),
   }));
 
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <TrainerClient items={formattedTrainers} />
+        <PlanClient items={formattedPlans} />
       </div>
     </div>
   );

@@ -4,25 +4,20 @@ import { ColumnDef } from "@tanstack/react-table";
 import CellAction from "./cell-action";
 // import CellAction from "./cell-actions";
 
-export type TrainerColumn = {
+export type PlanColumn = {
   id: string;
   name: string;
-  role: string;
   createdAt: string;
 };
 
-export const columns: ColumnDef<TrainerColumn>[] = [
+export const columns: ColumnDef<PlanColumn>[] = [
   {
     accessorKey: "name",
     header: "Name",
   },
   {
-    accessorKey: "role",
-    header: "Role",
-  },
-  {
     accessorKey: "createdAt",
-    header: "Joined At",
+    header: "Created At",
   },
   {
     id: "actions",

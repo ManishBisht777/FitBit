@@ -1,23 +1,33 @@
-import TrainerForm from "@/components/forms/trainer-form";
+import PlanForm from "@/components/forms/plan-form";
 import { prisma } from "@/lib/db";
 
-interface TrainerProps {
+interface PlanProps {
   params: {
-    trainerId: string;
+    planId: string;
+    gymId: string;
   };
 }
 
-export default async function Trainer({ params }: TrainerProps) {
-  const trainer = await prisma.trainer.findUnique({
+export default async function Plan({ params }: PlanProps) {
+  const plan = await prisma.plan.findUnique({
     where: {
-      id: params.trainerId,
+      id: params.planId,
+    },
+    include: {
+      images: true,
+    },
+  });
+
+  const benefits = await prisma.benefit.findMany({
+    where: {
+      gymId: params.gymId,
     },
   });
 
   return (
     <div className="flex-col">
       <div className="flex-1 space-y-4 p-8 pt-6">
-        <TrainerForm initialData={trainer} />
+        <PlanForm initialData={plan} benefits={benefits} />
       </div>
     </div>
   );

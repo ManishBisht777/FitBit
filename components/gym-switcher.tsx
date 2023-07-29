@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { useStoreModal } from "@/hooks/use-gym-modal";
+import Link from "next/link";
 
 interface GymSwitcherProps {
   items: Gym[];
@@ -78,13 +79,18 @@ export function GymSwitcher({ items }: GymSwitcherProps) {
           <CommandList>
             <CommandGroup>
               <CommandItem
-                onSelect={() => {
-                  setOpen(false);
-                  GymModal.onOpen();
-                }}
+              // onSelect={() => {
+              //   setOpen(false);
+              //   GymModal.onOpen();
+              // }}
               >
-                <PlusCircle className="mr-2 h-5 w-5" />
-                Create Store
+                <Link
+                  className="cursor-pointer flex items-center"
+                  href="/dashboard/new"
+                >
+                  <PlusCircle className="mr-2 h-4 w-4" />
+                  Create Store
+                </Link>
               </CommandItem>
             </CommandGroup>
           </CommandList>

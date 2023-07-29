@@ -66,6 +66,8 @@ model Gym {
     id         String      @id @default(uuid())
     name       String
     userId     String
+    imageUrl   String
+    type       String
     billboards Billboard[] @relation("GymToBillboard")
     trainers   Trainer[]   @relation("GymToTrainer")
     createdAt  DateTime    @default(now())

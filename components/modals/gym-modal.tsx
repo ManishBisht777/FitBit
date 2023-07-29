@@ -20,6 +20,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { useStoreModal } from "@/hooks/use-gym-modal";
 import { formSchema } from "@/lib/validation/gym";
+import ImageUpload from "../image-upload";
 
 type Props = {};
 
@@ -33,6 +34,7 @@ export default function StoreModal({}: Props) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      imageUrl: "",
     },
   });
 
@@ -69,9 +71,27 @@ export default function StoreModal({}: Props) {
               <form onSubmit={form.handleSubmit(onSubmit)}>
                 <FormField
                   control={form.control}
-                  name="name"
+                  name="imageUrl"
                   render={({ field }) => (
                     <FormItem>
+                      <FormLabel>Gym Image</FormLabel>
+                      <FormControl>
+                        <ImageUpload
+                          value={field.value ? [field.value] : []}
+                          disabled={loading}
+                          onChange={(url) => field.onChange(url)}
+                          onRemove={() => field.onChange("")}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem className="mt-4">
                       <FormLabel>Name</FormLabel>
                       <FormControl>
                         <Input

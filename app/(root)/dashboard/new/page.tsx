@@ -18,51 +18,46 @@ import { formSchema } from "@/lib/validation/gym";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
 import axios from "axios";
-import { useParams, useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { Icons } from "@/components/icons";
-import { Gym } from "@prisma/client";
-import { AlertModal } from "../modals/alert-modal";
-import ImageUpload from "../image-upload";
+import ImageUpload from "@/components/image-upload";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../ui/select";
+} from "@/components/ui/select";
 import { gymCategories } from "@/config/category";
 
-type Props = {
-  initialData: Gym;
-};
+type Props = {};
 
-export default function GymEditForm({ initialData }: Props) {
+export default function DashboardNew({}: Props) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: initialData.name,
-      imageUrl: initialData.imageUrl,
-      type: initialData.type,
+      name: "",
+      imageUrl: "",
+      type: "",
     },
   });
 
   const { toast } = useToast();
-  const params = useParams();
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
-  const [deleteLoading, setDeleteLoading] = useState(false);
-  const [open, setOpen] = useState(false);
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const response = await axios.patch(`/api/gym/${params.gymId}`, values);
+      const response = await axios.post("/api/gym", values);
+
+      toast({
+        title: "Gym Created SuccessFully",
+      });
 
       router.refresh();
-      toast({
-        title: "Gym Updated SuccessFully",
-      });
+      router.push("/dashboard");
     } catch (error) {
       console.log(error);
     }
@@ -70,36 +65,14 @@ export default function GymEditForm({ initialData }: Props) {
     setIsLoading(false);
   }
 
-  const onDelete = async () => {
-    try {
-      setDeleteLoading(true);
-      await axios.delete(`/api/gym/${params.gymId}`);
-
-      router.refresh();
-      router.push("/dashboard");
-      toast({
-        title: "Gym Deleted",
-      });
-    } catch (error: any) {
-      toast({
-        variant: "destructive",
-        title: "Make sure you removed all Plans and Trainer first.",
-      });
-    } finally {
-      setDeleteLoading(false);
-      setOpen(false);
-    }
-  };
-
   return (
-    <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConfirm={onDelete}
-        loading={deleteLoading}
-      />
-
+    <section className="container flex flex-col justify-center max-w-3xl h-screen overflow-hidden">
+      <div className="text-center">
+        <h1 className="text-3xl font-bold">Create a Gym</h1>
+        <p className="text-sm text-primary/70">
+          Create a gym to access it on dashboard
+        </p>
+      </div>
       <Form {...form}>
         <form
           className="w-full p-4 border rounded-lg flex flex-col gap-6 items-start mt-6"
@@ -179,26 +152,15 @@ export default function GymEditForm({ initialData }: Props) {
             </div>
           </div>
           <div className="self-end">
-            <Button
-              onClick={() => setOpen(true)}
-              variant="destructive"
-              className="px-6 mr-2"
-              type="button"
-            >
-              {deleteLoading && (
-                <Icons.spinner className="mr-2 w-4 h-4 animate-spin" />
-              )}
-              Delete Store
-            </Button>
             <Button className="px-6 mr-3" type="submit">
               {isLoading && (
                 <Icons.spinner className="mr-2 w-4 h-4 animate-spin" />
               )}
-              Update
+              Create
             </Button>
           </div>
         </form>
       </Form>
-    </>
+    </section>
   );
 }

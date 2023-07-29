@@ -7,20 +7,23 @@ export async function POST(req: Request) {
     const user = await getCurrentUser();
     const body = await req.json();
 
-    const { name } = body;
+    const { name, imageUrl, type } = body;
 
     if (!user) {
       return new NextResponse("Unauthorized", { status: 403 });
     }
 
-    if (!name) {
-      return new NextResponse("Name is required", { status: 400 });
-    }
+    if (!name) return new NextResponse("Name is required", { status: 400 });
+    if (!imageUrl)
+      return new NextResponse("Image url is required", { status: 400 });
+    if (!type) return new NextResponse("Type is required", { status: 400 });
 
     const store = await prisma.gym.create({
       data: {
         name,
         userId: user.id,
+        imageUrl,
+        type,
       },
     });
 

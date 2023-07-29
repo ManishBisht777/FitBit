@@ -1,19 +1,17 @@
-"use client";
+import { buttonVariants } from "@/components/ui/button";
+import Link from "next/link";
 
-import { useEffect } from "react";
-import { useStoreModal } from "@/hooks/use-gym-modal";
+type Props = {};
 
-const SetupPage = () => {
-  const onOpen = useStoreModal((state) => state.onOpen);
-  const isOpen = useStoreModal((state) => state.isOpen);
-
-  useEffect(() => {
-    if (!isOpen) {
-      onOpen();
-    }
-  }, [isOpen, onOpen]);
-
-  return null;
-};
-
-export default SetupPage;
+export default function Dashboard({}: Props) {
+  return (
+    <div className="container flex h-screen w-full flex-col gap-2 justify-center items-center">
+      <Link className={buttonVariants()} href="/dashboard/new">
+        Create a Gym
+      </Link>
+      <p className="text-sm text-primary/70">
+        You Currently don't have a gym create a gym to access the dashboard
+      </p>
+    </div>
+  );
+}

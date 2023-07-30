@@ -76,7 +76,7 @@ export default function PlanForm({ initialData }: PlanFormProps) {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.gymId}/plans/${params.PlanId}`, data);
+        await axios.patch(`/api/${params.gymId}/plans/${params.planId}`, data);
       } else {
         await axios.post(`/api/${params.gymId}/plans`, data);
       }

@@ -4,13 +4,13 @@ import { NextResponse } from "next/server";
 
 export async function DELETE(
   req: Request,
-  { params }: { params: { trainerId: string; gymId: string } }
+  { params }: { params: { planId: string; gymId: string } }
 ) {
   try {
     const user = await getCurrentUser();
     if (!user) return new NextResponse("Unauthorized", { status: 403 });
-    if (!params.trainerId)
-      return new NextResponse("trainer id required", { status: 400 });
+    if (!params.planId)
+      return new NextResponse("plan id required", { status: 400 });
 
     const gymByUserId = await prisma.gym.findFirst({
       where: {
@@ -23,12 +23,12 @@ export async function DELETE(
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const trainer = await prisma.trainer.delete({
+    const plan = await prisma.plan.delete({
       where: {
-        id: params.trainerId,
+        id: params.planId,
       },
     });
-    return NextResponse.json(trainer);
+    return NextResponse.json(plan);
   } catch (error) {
     return new NextResponse("Internal error", { status: 500 });
   }
@@ -36,45 +36,68 @@ export async function DELETE(
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { trainerId: string; gymId: string } }
+  { params }: { params: { planId: string; gymId: string } }
 ) {
   try {
     const user = await getCurrentUser();
     const body = await req.json();
 
-    const { name, role, imageUrl } = body;
+    const { name, description, price, images } = body;
 
     if (!user) return new NextResponse("Unauthorized", { status: 403 });
-    if (!name) return new NextResponse("name required", { status: 400 });
-    if (!role) return new NextResponse("name required", { status: 400 });
-    if (!imageUrl)
-      return new NextResponse("ImageUrl required", { status: 400 });
-    if (!params.trainerId)
-      return new NextResponse("trainer id required", { status: 400 });
+    if (!name) return new NextResponse("name is required", { status: 400 });
+    if (!description)
+      return new NextResponse("description is required", { status: 400 });
+    if (!price) return new NextResponse("price is required", { status: 400 });
+    if (!images && !images.length())
+      return new NextResponse("images is required", { status: 400 });
 
-    const gymByUserId = await prisma.gym.findFirst({
+    if (!params.gymId) {
+      return new NextResponse("Gym id is required", { status: 400 });
+    }
+
+    const storeByUserId = await prisma.gym.findFirst({
       where: {
         id: params.gymId,
         userId: user.id,
       },
     });
 
-    if (!gymByUserId) {
+    if (!storeByUserId) {
       return new NextResponse("Unauthorized", { status: 405 });
     }
 
-    const trainer = await prisma.trainer.update({
+    const imgs = images.map((image: { url: string }) => image);
+
+    await prisma.plan.update({
       where: {
-        id: params.trainerId,
+        id: params.planId,
       },
       data: {
         name,
-        imageUrl,
-        role,
+        description,
+        price,
+        gymId: params.gymId,
+        images: {
+          deleteMany: {},
+        },
       },
     });
 
-    return NextResponse.json(trainer);
+    const plan = await prisma.plan.update({
+      where: {
+        id: params.planId,
+      },
+      data: {
+        images: {
+          createMany: {
+            data: [...images.map((image: { url: string }) => image)],
+          },
+        },
+      },
+    });
+
+    return NextResponse.json(plan);
   } catch (error) {
     return new NextResponse("Internal error", { status: 500 });
   }

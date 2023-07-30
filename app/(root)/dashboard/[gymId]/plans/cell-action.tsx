@@ -12,10 +12,10 @@ import { useParams, useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "@/components/ui/use-toast";
-import { TrainerColumn } from "./columns";
+import { PlanColumn } from "./columns";
 
 interface CellActionProps {
-  data: TrainerColumn;
+  data: PlanColumn;
 }
 
 export default function CellAction({ data }: CellActionProps) {
@@ -27,9 +27,9 @@ export default function CellAction({ data }: CellActionProps) {
   const onConfirm = async () => {
     try {
       setLoading(true);
-      await axios.delete(`/api/${params.gymId}/trainers/${data.id}`);
+      await axios.delete(`/api/${params.gymId}/plans/${data.id}`);
       toast({
-        title: "Trainers deleted",
+        title: "Plan deleted",
       });
       router.refresh();
     } catch (error) {
@@ -65,7 +65,7 @@ export default function CellAction({ data }: CellActionProps) {
           </DropdownMenuItem>
           <DropdownMenuItem
             onClick={() =>
-              router.push(`/dashboard/${params.gymId}/trainers/${data.id}`)
+              router.push(`/dashboard/${params.gymId}/plans/${data.id}`)
             }
           >
             <Edit className="mr-2 h-4 w-4" /> Update

@@ -32,8 +32,6 @@ export async function POST(
     const user = await getCurrentUser();
     const body = await req.json();
 
-    console.log(params);
-
     const { label, imageUrl } = body;
 
     if (!user) {
@@ -70,6 +68,7 @@ export async function POST(
         gymId: params.gymId,
       },
     });
+    console.log(billboard);
 
     return NextResponse.json(billboard);
   } catch (error) {

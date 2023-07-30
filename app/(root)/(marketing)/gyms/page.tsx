@@ -1,5 +1,5 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { gymCategories } from "@/config/category";
 import { prisma } from "@/lib/db";
 import { cn } from "@/lib/utils";
@@ -9,7 +9,9 @@ import Link from "next/link";
 type Props = {};
 
 export default async function Index({}: Props) {
-  const gyms = await prisma.gym.findMany();
+  const gyms = await prisma.gym.findMany({
+    take: 8,
+  });
 
   return (
     <div className="container">
@@ -131,9 +133,28 @@ export default async function Index({}: Props) {
           {gyms &&
             gyms.map((gym) => {
               return (
-                <div key={gym.id} className="h-48 rounded-xl bg-slate-800">
-                  <h1>{gym.name}</h1>
-                </div>
+                <Link
+                  href={`/gym/${gym.id}`}
+                  key={gym.id}
+                  className="bg-primary-foreground group cursor-pointer rounded-xl border p-3 space-y-4"
+                >
+                  <div className="aspect-square rounded-xl bg-gray-100 relative">
+                    <Image
+                      src={gym.imageUrl}
+                      alt={gym.name}
+                      fill
+                      className="aspect-square object-cover rounded-md"
+                    />
+                  </div>
+                  <div>
+                    <p className="font-semibold text-lg">{gym.name}</p>
+                    <p className="text-sm text-gray-500">{gym.type}</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <Button variant="outline">Compare Gym</Button>
+                    <Button>View Gym</Button>
+                  </div>
+                </Link>
               );
             })}
         </div>

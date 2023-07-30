@@ -55,28 +55,26 @@ export default function ImageUpload({
           </div>
         ))}
       </div>
-      {!(value.length > 0) && (
-        <CldUploadWidget onUpload={onUpload} uploadPreset="qd3vgwvp">
-          {({ open }) => {
-            const onClick = () => {
-              open();
-            };
+      <CldUploadWidget onUpload={onUpload} uploadPreset="qd3vgwvp">
+        {({ open }) => {
+          const onClick = () => {
+            open();
+          };
 
-            return (
-              <Button
-                type="button"
-                className="w-[300px] h-[300px] flex flex-col justify-center items-center gap-2"
-                disabled={disabled}
-                variant="secondary"
-                onClick={onClick}
-              >
-                <ImagePlus className="h-8 w-8 mr-2" />
-                Upload an Image
-              </Button>
-            );
-          }}
-        </CldUploadWidget>
-      )}
+          return (
+            <Button
+              type="button"
+              className="w-[300px] h-[300px] flex flex-col justify-center items-center gap-2"
+              disabled={disabled}
+              variant="secondary"
+              onClick={onClick}
+            >
+              <ImagePlus className="h-8 w-8 mr-2" />
+              Upload an Image
+            </Button>
+          );
+        }}
+      </CldUploadWidget>
     </div>
   );
 }

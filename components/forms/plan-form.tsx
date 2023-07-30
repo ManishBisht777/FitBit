@@ -76,12 +76,12 @@ export default function PlanForm({ initialData }: PlanFormProps) {
     try {
       setLoading(true);
       if (initialData) {
-        await axios.patch(`/api/${params.gymId}/Plans/${params.PlanId}`, data);
+        await axios.patch(`/api/${params.gymId}/plans/${params.PlanId}`, data);
       } else {
-        await axios.post(`/api/${params.gymId}/Plans`, data);
+        await axios.post(`/api/${params.gymId}/plans`, data);
       }
       router.refresh();
-      router.push(`/dashboard/${params.gymId}/Plans`);
+      router.push(`/dashboard/${params.gymId}/plans`);
       toast({
         title: toastMessage,
       });
@@ -131,7 +131,7 @@ export default function PlanForm({ initialData }: PlanFormProps) {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full flex gap-8"
+          className="space-y-8 w-full flex flex-col"
         >
           <FormField
             control={form.control}
@@ -152,7 +152,7 @@ export default function PlanForm({ initialData }: PlanFormProps) {
             name="description"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Description</FormLabel>
                 <FormControl>
                   <Input placeholder="Description" {...field} />
                 </FormControl>
@@ -166,7 +166,7 @@ export default function PlanForm({ initialData }: PlanFormProps) {
             name="price"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Name</FormLabel>
+                <FormLabel>Price</FormLabel>
                 <FormControl>
                   <Input type="number" placeholder="Price" {...field} />
                 </FormControl>

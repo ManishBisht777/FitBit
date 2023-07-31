@@ -136,7 +136,7 @@ export default async function Index({}: Props) {
                 <Link
                   href={`/gym/${gym.id}`}
                   key={gym.id}
-                  className="bg-primary-foreground group cursor-pointer rounded-xl border p-3 space-y-4"
+                  className="bg-primary-foreground group cursor-pointer rounded-xl border p-3 space-y-4 font-sans"
                 >
                   <div className="aspect-square rounded-xl bg-gray-100 relative">
                     <Image

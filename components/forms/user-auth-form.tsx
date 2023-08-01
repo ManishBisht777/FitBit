@@ -42,10 +42,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
               disabled={isLoading}
             />
           </div>
-          <Button
-            className="bg-primary-foreground text-primary hover:text-primary-foreground"
-            disabled={isLoading}
-          >
+          <Button disabled={isLoading}>
             {isLoading && (
               <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
             )}

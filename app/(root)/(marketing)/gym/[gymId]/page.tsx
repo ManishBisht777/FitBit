@@ -7,6 +7,7 @@ import { Clock, MapPin } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Checkout from "./checkout";
 
 interface Props {
   params: {
@@ -176,12 +177,7 @@ export default async function GymId({ params }: Props) {
                         <p className="md:text-4xl text-base">
                           ${plan.price.toString()}
                         </p>
-                        <Button
-                          variant="outline"
-                          className="px-8 md:text-base text-xs bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent hover:bg-clip-border hover:text-primary-foreground"
-                        >
-                          Try Now
-                        </Button>
+                        <Checkout items={plan.id} />
                       </div>
                     </div>
                     {!(plans.length === index + 1) && (

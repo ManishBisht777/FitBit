@@ -39,7 +39,7 @@ export default function ImageUpload({
         {value.map((url) => (
           <div
             key={url}
-            className="relative w-[300px] h-[300px] rounded-md overflow-hidden"
+            className="relative md:w-[300px] md:h-[300px] h-[200px] w-[200px] rounded-md overflow-hidden"
           >
             <div className="z-10 absolute top-2 right-2">
               <Button
@@ -64,7 +64,7 @@ export default function ImageUpload({
           return (
             <Button
               type="button"
-              className="w-[300px] h-[300px] flex flex-col justify-center items-center gap-2"
+              className="md:w-[300px] md:h-[300px] h-[200px] w-[200px] flex flex-col justify-center items-center gap-2"
               disabled={disabled}
               variant="secondary"
               onClick={onClick}

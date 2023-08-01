@@ -105,7 +105,7 @@ export default function GymEditForm({ initialData }: Props) {
           className="w-full p-4 border rounded-lg flex flex-col gap-6 items-start mt-6"
           onSubmit={form.handleSubmit(onSubmit)}
         >
-          <div className="flex gap-4">
+          <div className="flex md:flex-row flex-col gap-4">
             <FormField
               control={form.control}
               name="imageUrl"
@@ -130,8 +130,10 @@ export default function GymEditForm({ initialData }: Props) {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">Gym Name</FormLabel>
-                    <p className="text-sm text-primary/50">
+                    <FormLabel className="md:text-lg text-base">
+                      Gym Name
+                    </FormLabel>
+                    <p className="md:text-sm text-xs text-primary/50">
                       Enter your Gym name or a display name you are comfortable
                       with
                     </p>
@@ -147,7 +149,9 @@ export default function GymEditForm({ initialData }: Props) {
                 name="type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">Gym Type</FormLabel>
+                    <FormLabel className="md:text-lg text-base">
+                      Gym Type
+                    </FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -178,7 +182,7 @@ export default function GymEditForm({ initialData }: Props) {
               />
             </div>
           </div>
-          <div className="self-end">
+          <div className="self-end flex gap-2">
             <Button
               onClick={() => setOpen(true)}
               variant="destructive"

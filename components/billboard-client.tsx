@@ -7,7 +7,6 @@ import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { Billboard } from "@prisma/client";
 import {
   BillboardColumn,
   columns,
@@ -34,7 +33,7 @@ export default function BillboardClient({ items }: Props) {
             router.push(`/dashboard/${params.gymId}/billboards/new`)
           }
         >
-          <Plus className="w-4 h-4 mr-2" /> Add New
+          <Plus className="w-4 h-4 mr-2 md:flex hidden" /> Add New
         </Button>
       </div>
       <Separator />

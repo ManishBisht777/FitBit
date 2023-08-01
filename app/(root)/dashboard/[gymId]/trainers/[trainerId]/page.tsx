@@ -16,7 +16,7 @@ export default async function Trainer({ params }: TrainerProps) {
 
   return (
     <div className="flex-col">
-      <div className="flex-1 space-y-4 p-8 pt-6">
+      <div className="flex-1 space-y-4 md:p-8 p-2 md:pt-6 pt-2">
         <TrainerForm initialData={trainer} />
       </div>
     </div>

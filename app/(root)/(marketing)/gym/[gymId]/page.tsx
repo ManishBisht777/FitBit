@@ -62,7 +62,10 @@ export default async function GymId({ params }: Props) {
             {billboards &&
               billboards.map((billboard) => {
                 return (
-                  <div className="md:col-span-2 md:h-[30vh] h-[10vh] rounded-lg overflow-hidden relative p-8 border">
+                  <div
+                    key={billboard.id}
+                    className="md:col-span-2 md:h-[30vh] h-[10vh] rounded-lg overflow-hidden relative p-8 border"
+                  >
                     <Image src={billboard.imageUrl} fill alt={gym.name} />
                   </div>
                 );

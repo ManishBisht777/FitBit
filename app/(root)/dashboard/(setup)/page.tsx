@@ -10,7 +10,7 @@ export default function Dashboard({}: Props) {
         Create a Gym
       </Link>
       <p className="text-sm text-primary/70">
-        You Currently don't have a gym create a gym to access the dashboard
+        You Currently don&apos;t have a gym create a gym to access the dashboard
       </p>
     </div>
   );

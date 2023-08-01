@@ -72,6 +72,7 @@ model Gym {
     trainers   Trainer[]   @relation("GymToTrainer")
     plans      Plan[]      @relation("GymToPlan")
     benefits   Benefit[]   @relation("GymToBenefit")
+    orders     Order[]     @relation("GymToOrder")
     createdAt  DateTime    @default(now())
     updatedAt  DateTime    @updatedAt
 }
@@ -103,11 +104,12 @@ model Trainer {
 }
 
 model Plan {
-    id          String  @id @default(uuid())
+    id          String      @id @default(uuid())
     name        String
     description String
-    images      Image[] @relation("PlanToImage")
+    images      Image[]     @relation("PlanToImage")
     price       Decimal
+    orderItems  OrderItem[]
 
     gymId     String
     gym       Gym      @relation("GymToPlan", fields: [gymId], references: [id])
@@ -138,5 +140,32 @@ model Image {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
+    @@index([planId])
+}
+
+model Order {
+    id      String  @id @default(uuid())
+    phone   String  @default("")
+    address String  @default("")
+    isPaid  Boolean @default(false)
+
+    gymId      String
+    gym        Gym         @relation("GymToOrder", fields: [gymId], references: [id])
+    orderItems OrderItem[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([gymId])
+}
+
+model OrderItem {
+    id      String @id @default(uuid())
+    orderId String
+    order   Order  @relation(fields: [orderId], references: [id])
+    planId  String
+    plan    Plan   @relation(fields: [planId], references: [id])
+
+    @@index([orderId])
     @@index([planId])
 }

@@ -37,6 +37,11 @@ export default function DashboardMainNav({}: Props) {
       active: pathname === `/dashboard/${params.gymId}/plans`,
     },
     {
+      href: `/dashboard/${params.gymId}/orders`,
+      label: "Orders",
+      active: pathname === `/dashboard/${params.gymId}/orders`,
+    },
+    {
       href: `/dashboard/${params.gymId}/settings`,
       label: "Settings",
       active: pathname === `/dashboard/${params.gymId}/settings`,

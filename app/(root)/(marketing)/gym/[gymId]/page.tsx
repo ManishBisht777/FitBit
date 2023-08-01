@@ -173,7 +173,9 @@ export default async function GymId({ params }: Props) {
                         </p>
                       </div>
                       <div className="col-span-1 flex md:flex-col gap-4 items-center">
-                        <p className="md:text-4xl text-base">$1000</p>
+                        <p className="md:text-4xl text-base">
+                          ${plan.price.toString()}
+                        </p>
                         <Button
                           variant="outline"
                           className="px-8 md:text-base text-xs bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent hover:bg-clip-border hover:text-primary-foreground"

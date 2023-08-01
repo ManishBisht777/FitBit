@@ -21,7 +21,6 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useStoreModal } from "@/hooks/use-gym-modal";
 import Link from "next/link";
 
 interface GymSwitcherProps {
@@ -33,7 +32,6 @@ export function GymSwitcher({ items }: GymSwitcherProps) {
 
   const params = useParams();
   const router = useRouter();
-  const GymModal = useStoreModal();
 
   const currentGym = items.find((item) => item.id === params.gymId);
 
@@ -44,14 +42,14 @@ export function GymSwitcher({ items }: GymSwitcherProps) {
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[200px] justify-between"
+          className="md:w-[200px] w-[150px] justify-between"
         >
           <School2 className="mr-2 h-4 w-4" />
           {currentGym?.name}
           <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="md:w-[200px] w-[150px] p-0">
         <Command>
           <CommandInput placeholder="Search Gym..." className="h-9" />
           <CommandEmpty>No framework found.</CommandEmpty>
@@ -78,12 +76,7 @@ export function GymSwitcher({ items }: GymSwitcherProps) {
           <CommandSeparator />
           <CommandList>
             <CommandGroup>
-              <CommandItem
-              // onSelect={() => {
-              //   setOpen(false);
-              //   GymModal.onOpen();
-              // }}
-              >
+              <CommandItem>
                 <Link
                   className="cursor-pointer flex items-center"
                   href="/dashboard/new"

@@ -4,6 +4,7 @@ import { UserAccountNav } from "../user-account-menu";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/db";
 import DashboardMainNav from "./dashboard-main-nav";
+import SheetSide from "./sheet-side";
 
 type DashboardNavbarProps = {};
 
@@ -20,8 +21,11 @@ export default async function DashboardNavbar({}: DashboardNavbarProps) {
 
   return (
     <div className="border-b">
-      <div className="flex h-16 items-center px-4">
-        <GymSwitcher items={gyms} />
+      <div className="flex h-16 justify-between items-center md:px-4">
+        <div className="flex gap-2 items-center">
+          <SheetSide />
+          <GymSwitcher items={gyms} />
+        </div>
         <DashboardMainNav />
         <UserAccountNav user={user} />
       </div>

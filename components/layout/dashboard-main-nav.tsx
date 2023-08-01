@@ -44,7 +44,7 @@ export default function DashboardMainNav({}: Props) {
   ];
 
   return (
-    <nav className="ml-6 flex items-center  space-x-4 lg:space-x-6 flex-1">
+    <nav className="ml-6 md:flex hidden items-center  space-x-4 lg:space-x-6 flex-1">
       {routes.map((route) => (
         <Link
           key={route.href}
